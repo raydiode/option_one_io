@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/base';
+---
+<BaseLayout title="Page not found">
+  <section class="wrap notfound">
+    <p class="sec-mark mono">Error 404 <span class="dot">·</span> off the chart</p>
+    <h1>Off course.</h1>
+    <p class="lede" style="color:var(--muted);max-width:44ch;margin-bottom:var(--sp-l)">This page is not on the map. Let us get you back to a known heading.</p>
+    <a class="btn btn-ghost" href={withBase('/')}>Return home</a>
+  </section>
+</BaseLayout>

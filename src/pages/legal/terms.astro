@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+---
+<BaseLayout
+  title="Terms of Use"
+  breadcrumb="Terms of Use"
+  description="The terms on which this website is made available. Engagements with Option One are governed by contract, not by this site."
+  noindex={true}>
+  <section class="legal">
+    <div class="wrap prose">
+      <p class="sec-mark mono">Legal</p>
+      <h1>Terms of Use</h1>
+      <p class="mono">Last updated: 09 August 2026</p>
+
+      <h2>1. These terms</h2>
+      <p>These terms govern your use of optionone.io. By using the site you accept
+      them. If you do not accept them, please do not use the site.</p>
+      <p>The site is operated by Option One, a trading name of a business based
+      in the United Kingdom. The registered company details will be stated here
+      at launch. "We", "us" and "our" mean the operator of this site.</p>
+      <p>We may change these terms from time to time. The version on this page at
+      the moment you use the site is the version that applies, and the date above
+      shows when it was last revised.</p>
+
+      <h2>2. Using this site</h2>
+      <p>You may read this site, and print or download extracts, for your own
+      information or for the internal purposes of your organisation. You may share
+      links to it freely.</p>
+      <p>You may not use the site in any way that is unlawful or fraudulent;
+      introduce any virus or other harmful material to it; attempt to gain
+      unauthorised access to it or to any server or system connected to it;
+      collect data from it by automated means, including scraping or harvesting,
+      without our written consent; harvest any address published on it, or use
+      such an address to send unsolicited marketing; or use it in a way that
+      damages the site or degrades it for others.</p>
+      <p>We may withdraw access to the site, in whole or in part, where these
+      terms are breached.</p>
+
+      <h2>3. Our content</h2>
+      <p>All content on this site, including text, images, page structure, layout
+      and design, and the Option One name, logo and other marks, belongs to us or
+      is used by us under licence. It is protected by copyright and by trade mark
+      law.</p>
+      <p>The permission in section 2 is limited to that. Nothing on this site may
+      be republished, redistributed, exploited commercially, or used to train or
+      develop any machine learning or artificial intelligence system, without our
+      written consent. Where you use an extract as permitted, our status as the
+      author must be acknowledged and the extract must not be altered in a way
+      that changes its meaning.</p>
+
+      <h2>4. This site is information, not advice</h2>
+      <p>Everything on this site is general information about what we do. It is
+      not professional advice, and it is not an assessment of your operation, your
+      risk, your obligations or your circumstances. No one should act, or decide
+      not to act, in reliance on anything published here without taking advice on
+      their own situation.</p>
+      <p>We prepare the content carefully, but we do not warrant that it is
+      complete, current or free from error, and we may change or remove any of it
+      without notice.</p>
+
+      <h2>5. No offer, and no relationship until there is a contract</h2>
+      <p>Nothing on this site is an offer capable of acceptance, and nothing on it
+      forms a contract.</p>
+      <p>Contacting us does not create a client relationship, does not oblige us
+      to act, and does not oblige you to instruct us. We may decline any enquiry,
+      and where the work is not work we should take, we will say so. A
+      relationship begins only when a written agreement is signed by both parties,
+      and that agreement, not this page, then governs what we owe each other.
+      Where anything on this site conflicts with a signed engagement, the
+      engagement prevails.</p>
+
+      <h2>6. Availability</h2>
+      <p>We aim to keep the site available, but we do not guarantee it. It is
+      provided free of charge and may be suspended, withdrawn or changed at any
+      time, without notice and without liability. You are responsible for the
+      arrangements needed to access it, and for ensuring that anyone accessing it
+      through your connection is aware of these terms.</p>
+
+      <h2>7. Links to other sites</h2>
+      <p>Where this site links to a third-party site, the link is provided for
+      information only. We do not control those sites, we do not endorse them, and
+      we accept no responsibility for their content or for any loss arising from
+      your use of them.</p>
+
+      <h2>8. Our liability to you</h2>
+      <p>Nothing in these terms limits or excludes our liability for death or
+      personal injury caused by our negligence, for fraud or fraudulent
+      misrepresentation, or for any other liability that cannot lawfully be
+      limited or excluded. If you are a consumer, nothing in these terms affects
+      your statutory rights.</p>
+      <p>Subject to that, and because the site is provided free of charge for
+      information:</p>
+      <ul>
+        <li>we exclude all conditions, warranties and other terms that might
+        otherwise be implied into these terms by statute, common law or
+        otherwise;</li>
+        <li>we are not liable to you for any loss of profit, loss of business,
+        loss of contracts, loss of anticipated savings, loss of data, or business
+        interruption, however arising; and</li>
+        <li>we are not liable for any loss arising from your reliance on the
+        content of this site, from any interruption or unavailability of it, or
+        from any virus or other harmful material that infects your equipment
+        through your use of it. You are responsible for your own antivirus
+        protection.</li>
+      </ul>
+
+      <h2>9. Your privacy</h2>
+      <p>This site collects no personal data through the site itself. What we
+      hold is the mail you choose to send us, as set out in our
+      <a href={withBase('/legal/privacy')}>privacy policy</a>. What is stored in
+      your browser is described in our
+      <a href={withBase('/legal/cookies')}>cookie policy</a>.</p>
+
+      <h2>10. General</h2>
+      <p>If any provision of these terms is found to be unenforceable, the
+      remainder continue in force. A delay in enforcing any part of these terms is
+      not a waiver of it. These terms are between you and us; no other person has
+      any right to enforce them.</p>
+
+      <h2>11. Governing law</h2>
+      <p>These terms, and any dispute or claim arising out of or in connection
+      with them or with your use of this site, are governed by the law of England
+      and Wales, and the courts of England and Wales have exclusive
+      jurisdiction.</p>
+
+      <h2>12. Contact</h2>
+      <p>Any question about these terms can be raised through the
+      <a href={withBase('/contact')}>contact page</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

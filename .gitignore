@@ -1,0 +1,12 @@
+# Dependencies, reinstalled from package-lock.json
+node_modules/
+
+# Build output, rebuilt by the deploy workflow
+dist/
+.astro/
+
+# Local environment and editor noise
+.env
+.env.*
+.DS_Store
+*.log

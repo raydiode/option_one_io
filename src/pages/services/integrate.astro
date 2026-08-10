@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+import { cta } from '../../brand.config';
+import { absolute, ORG_ID } from '../../lib/seo';
+
+const summary = [
+  {
+    n: '01',
+    k: 'Live, not parallel',
+    d: 'The old route is closed. A system running beside the operation is not yet part of it.',
+  },
+  {
+    n: '02',
+    k: 'Owned',
+    d: 'The client keeps the systems, the training, and the reasoning behind both.',
+  },
+  {
+    n: '03',
+    k: 'Independent',
+    d: 'We count ourselves in the dependency test. Anything that still needs us is not finished.',
+  },
+];
+
+const covers = [
+  {
+    name: 'Training',
+    line: 'The people who will run it, taught on it, before we leave.',
+  },
+  {
+    name: 'Cutover',
+    line: 'The old way closed deliberately, on a date, with a stated route back if it has to be reopened.',
+  },
+  {
+    name: 'Accountability',
+    line: 'Who owns what, visible to whoever answers for it, without having to be asked.',
+  },
+  {
+    name: 'Contingency',
+    line: 'What runs when it fails, defined in advance of the conditions that call for it.',
+  },
+  {
+    name: 'The record',
+    line: 'The reasoning, not only the instructions. Why it was built this way, so that the next person does not quietly undo it.',
+  },
+];
+
+const others = [
+  { name: 'Design', href: '/services/design', line: 'What should exist, how it works, and in what order, settled before anything is committed.' },
+  { name: 'Build', href: '/services/build', line: 'Make it. The working thing, not a specification handed to someone else.' },
+  { name: 'Communicate', href: '/services/communicate', line: 'The record and the telling, for work that has to be understood by people who were not there.' },
+];
+
+const serviceSchema = [
+  {
+    '@type': 'Service',
+    '@id': `${absolute('/services/integrate')}#service`,
+    name: 'Integrate',
+    serviceType: 'Operational integration, training and handover',
+    description:
+      'Training, cutover, accountability, contingency and the record. The operation put into daily use and handed over, so it runs without the firm.',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Integrate',
+      itemListElement: covers.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: c.name, description: c.line },
+      })),
+    },
+  },
+];
+---
+<BaseLayout
+  title="Integrate — Handover, Training and Operational Independence"
+  breadcrumb="Integrate"
+  description="Training, cutover, accountability and contingency, so the operation runs without us. Capability that cannot be handed over has not been built."
+  schema={serviceSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Integrate</p>
+      <div class="sect-body">
+        <h1>Handover, and the test of it.</h1>
+        <p class="lede">Put it into the organisation so it holds. It runs without us, and it
+        depends on no one person.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">In short</p>
+      <div class="sect-body">
+        <div class="facts reveal">
+          {summary.map((s) => (
+            <div class="fact">
+              <span class="n">{s.n}</span>
+              <span class="k">{s.k}</span>
+              <span class="d">{s.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">What it covers</p>
+      <div class="sect-body">
+        {covers.map((c) => (
+          <div class="row reveal">
+            <div class="body">
+              <h3>{c.name}</h3>
+              <p>{c.line}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The test</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">What the operation is measured against.</h2>
+        <div class="prose reveal">
+          <p>Performance while an adviser is in the room is evidence about the adviser,
+          not the operation. The test of an operating model is whether it holds six months
+          after handover, through an absence, a supplier failure or a change of
+          management, with no one there to correct it in flight.</p>
+          <p>That is why engagements end. An adviser who has become load-bearing has
+          produced a dependency, not a capability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">The others</p>
+      <div class="sect-body">
+        {others.map((o) => (
+          <a class="rowlink" href={withBase(o.href)}><div class="row reveal">
+            <div class="body">
+              <h3>{o.name}</h3>
+              <p>{o.line}</p>
+            </div>
+            <span class="go">View →</span>
+          </div></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">Integration closes the engagement.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>It is also commissioned on work the firm did not build, where someone has to
+          make it hold.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,232 @@
+---
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { brand } from '../brand.config';
+import { withBase, routePath } from '../lib/base';
+import { absolute, origin, ORG_ID } from '../lib/seo';
+
+interface Props {
+  title?: string;
+
+  description?: string;
+
+  breadcrumb?: string;
+
+  heroHeader?: boolean;
+
+  schema?: Record<string, unknown>[];
+
+  image?: string;
+
+  imageAlt?: string;
+
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = brand.tagline,
+  breadcrumb,
+  heroHeader = false,
+  schema = [],
+  image,
+  imageAlt,
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title ? `${title} — ${brand.name}` : `${brand.name} — ${brand.tagline}`;
+const bodyClass = heroHeader ? 'hdr-on-hero' : '';
+const route = routePath(Astro.url.pathname);
+
+const canonical = absolute(route);
+const ogImage = absolute(image ?? '/assets/brand/og-image.png');
+const ogImageAlt = imageAlt ?? `${brand.name} — ${brand.tagline}`;
+
+const orgId = ORG_ID;
+
+const org = {
+  '@type': 'Organization',
+  '@id': orgId,
+  name: brand.name,
+  url: absolute('/'),
+  logo: absolute('/assets/brand/logo-lockup-dark.svg'),
+  image: absolute('/assets/brand/og-image.png'),
+  description: brand.tagline,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Enquiries',
+    url: absolute('/contact'),
+    areaServed: 'Worldwide',
+    availableLanguage: 'English',
+  },
+  address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
+  areaServed: { '@type': 'Place', name: 'Worldwide' },
+  knowsAbout: [
+    'Operations consulting',
+    'Operating model design',
+    'Operational resilience',
+    'Business process design',
+    'Commercial operations',
+    'Field operations',
+  ],
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${absolute('/')}#website`,
+  url: absolute('/'),
+  name: brand.name,
+  publisher: { '@id': orgId },
+  inLanguage: 'en-GB',
+};
+
+const segments = route === '/' ? [] : route.slice(1).split('/');
+const deslug = (s: string) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+const crumbs = [
+  { name: 'Home', item: absolute('/') },
+  ...segments.map((seg, i) => ({
+    name: i === segments.length - 1 ? (breadcrumb ?? deslug(seg)) : deslug(seg),
+    item: absolute('/' + segments.slice(0, i + 1).join('/')),
+  })),
+];
+
+const breadcrumbList = segments.length
+  ? [{
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: crumbs.map((c, i) => ({
+        '@type': 'ListItem', position: i + 1, name: c.name, item: c.item,
+      })),
+    }]
+  : [];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [org, website, ...breadcrumbList, ...schema],
+};
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <link rel="icon" href={withBase('/assets/icons/favicon.ico')} sizes="48x48" />
+  <link rel="icon" href={withBase('/assets/icons/favicon.svg')} type="image/svg+xml" />
+  <link rel="apple-touch-icon" href={withBase('/assets/icons/apple-touch-icon.png')} />
+  <link rel="manifest" href={withBase('/site.webmanifest')} />
+  <meta name="theme-color" content="#EDF1F4" id="themeColor" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={brand.name} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogImageAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image:alt" content={ogImageAlt} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <script is:inline>
+    (function () {
+      var saved = localStorage.getItem('opt-theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  {brand.analytics && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: brand.analytics })}></script>
+  )}
+</head>
+<body class={bodyClass}>
+  <Header />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+
+    const root = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    const meta = document.getElementById('themeColor');
+
+    function sync() {
+      const dark = root.getAttribute('data-theme') === 'dark';
+      if (btn) btn.textContent = dark ? 'Light' : 'Dark';
+      if (meta) meta.setAttribute('content', dark ? '#0C141E' : '#EDF1F4');
+    }
+    sync();
+
+    btn?.addEventListener('click', () => {
+      const dark = root.getAttribute('data-theme') === 'dark';
+      if (dark) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('opt-theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('opt-theme', 'dark');
+      }
+      sync();
+    });
+
+    const hdr = document.getElementById('hdr');
+    function onScroll() { hdr?.classList.toggle('scrolled', window.scrollY > 40); }
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+
+    const navToggle = document.getElementById('navToggle');
+    function closeMenu() {
+      hdr?.classList.remove('menu-open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    }
+    navToggle?.addEventListener('click', () => {
+      const open = hdr?.classList.toggle('menu-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.querySelectorAll('#navLinks a').forEach((a) => a.addEventListener('click', closeMenu));
+    addEventListener('resize', () => { if (window.innerWidth > 760) closeMenu(); }, { passive: true });
+
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && hdr?.classList.contains('menu-open')) {
+        closeMenu();
+        navToggle?.focus();
+      }
+    });
+
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !mq.matches) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.14 });
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add('in'));
+    }
+  </script>
+</body>
+</html>

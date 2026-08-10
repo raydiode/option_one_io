@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/base';
+import { cta } from '../brand.config';
+
+const clauses = [
+  {
+    rule: 'Resilience',
+    line: 'Disruption absorbed by the system rather than by the people inside it.',
+    body: [
+      'Most working practice was set by whoever established it first, under conditions that no longer apply, and has not been examined since. Until it is, disruption is absorbed by individual effort, which is finite, unrecorded and concentrated in the few people willing to supply it.',
+      'We examine it and rebuild it. Performance under pressure stops being a hope that the right person is available on the day and becomes a quantity the business can plan against.',
+    ],
+  },
+  {
+    rule: 'Contingency',
+    line: 'What happens, who decides, and at what threshold.',
+    body: [
+      'Exposure bounded, costed and known before it is tested. That is what a board, a lender or an insurer is actually asking about, and it can only be answered in advance.',
+      'A response designed during an incident is set by whoever is available and by how much time they have. Both are accidents of timing, and the cost is then whatever it turns out to be, because nobody decided what it was allowed to be.',
+    ],
+  },
+  {
+    rule: 'Redundancy',
+    line: 'What survives when a part is removed.',
+    body: [
+      'Every operation carries dependencies it did not choose. They accumulate through convenience and through competence, and they are found at the point of failure, which is the most expensive moment to remove them. We find them first.',
+      'We count ourselves among them. An engagement that cannot be ended has produced a dependency, not a capability.',
+    ],
+  },
+  {
+    rule: 'Flow',
+    line: 'Work moving without stalling at a handoff or waiting on a decision.',
+    body: [
+      'Where work queues the cause is almost never effort. It is a boundary nobody settled: who decides, when they decide, and on what trigger. Defined triggers and sequenced workflows settle it, and throughput becomes a function of the design rather than of who happens to be watching the queue.',
+    ],
+  },
+];
+---
+<BaseLayout
+  title="About — A Global Operations Consultancy"
+  breadcrumb="About"
+  description="A global operations consultancy in London. Option One designs, builds and integrates operating models to form resilient, scalable and saleable businesses.">
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">About</p>
+      <div class="sect-body">
+        <h1>Precision Operations.</h1>
+        <p class="lede">Option One is a global operations consultancy based in London,
+        United Kingdom. It designs, builds and integrates operating models to form
+        resilient, scalable and saleable businesses.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The standard</p>
+      <div class="sect-body">
+        <p class="lede-statement reveal"><a href="#resilience">Resilience</a>, <a
+        href="#contingency">contingency</a>, <a href="#redundancy">redundancy</a> and <em><a
+        href="#flow">flow</a></em></p>
+        <div class="prose reveal" style="margin-top:var(--sp-l)">
+          <p>These four conditions are non-negotiable. They define how the work is done
+          from the first day, not what we hope to achieve by the end. When a client
+          engages us, this is what they are buying.</p>
+          <p>We embed them through four capabilities: <a
+          href={withBase('/services/design')}>design</a>, <a
+          href={withBase('/services/build')}>build</a>, <a
+          href={withBase('/services/integrate')}>integrate</a> and <a
+          href={withBase('/services/communicate')}>communicate</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">In full</p>
+      <div class="sect-body">
+        {clauses.map((c) => (
+          <details class="fold reveal" id={c.rule.toLowerCase()}>
+            <summary>
+              <div class="sum">
+                <h3>{c.rule}</h3>
+                <p>{c.line}</p>
+              </div>
+              <span class="mark mono" aria-hidden="true"></span>
+            </summary>
+            <div class="body">
+              {c.body.map((p) => <p>{p}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The return</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">What the work leaves behind.</h2>
+        <div class="prose reveal">
+          <p>An operation built properly does not require the person who commissioned it.
+          Work stays with the people who do it, and decisions that once
+          travelled upward for approval are settled at the point they occur, against
+          thresholds agreed long beforehand. A single undertaking behaves the same way: it
+          moves through its sequence, and the question at each stage is what comes next
+          rather than what has gone wrong.</p>
+          <p>The difference shows when conditions turn. A contracting market is not an even
+          event. It removes the operators already at the limit of what their people could
+          hold together, and their customers, their best staff and their standing go to the
+          businesses that held capacity in reserve. Read from inside an operation of that
+          kind, a downturn looks less like a threat than an opening.</p>
+          <p>None of it can be produced at short notice. It is built in ordinary
+          conditions, when there is time to establish how the work is actually done, to
+          disagree about it, and to put something better in its place before it is
+          load-bearing. Begun under pressure it is a poorer thing: the diagnosis is rushed,
+          the options narrow to whatever can be done by Friday, and what would have been an
+          investment becomes a repair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">How we work</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">An engagement opens with an assessment and ends with a handover.</h2>
+        <div class="prose reveal">
+          <h3>Sequence</h3>
+          <p>The first task is to establish how the operation runs in practice:
+          conversations with the people doing the work, an audit of what is already in
+          place, and a workshop that settles what changes and in what order. From there the
+          client sets the scope.</p>
+          <h3>Method</h3>
+          <p>We work to a standard, not to a personality. Every engagement is run the same
+          way, so the quality of the work does not depend on which individual is assigned
+          to it. Most of it is conducted alongside the people who run the operation:
+          present for decisions before they are taken, and direct about what should be done
+          differently.</p>
+          <h3>Position</h3>
+          <p>We are answerable for the thing working. Designing it and building it sit in
+          the same firm, so neither can hide behind the other: what we specify has to
+          survive being made, and what we make is what we judged worth making.</p>
+          <h3>Fit</h3>
+          <p>We are a poor fit for businesses and project leaders seeking the result
+          without the change that produces it. The work alters how decisions are taken,
+          where they are made and what is committed to record. An organisation that
+          commissions the report and expects results without acting on it is buying the
+          wrong thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">What the first conversation establishes.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>Where the operation is carrying risk, and what removing it would take.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      function openTarget() {
+        var h = location.hash;
+        if (!h || h.length < 2) return;
+        var el;
+        try { el = document.querySelector(h); } catch (e) { return; }
+        if (el && el.tagName === 'DETAILS') el.open = true;
+      }
+      addEventListener('hashchange', openTarget);
+      openTarget();
+    })();
+  </script>
+</BaseLayout>

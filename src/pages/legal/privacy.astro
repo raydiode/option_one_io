@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+---
+<BaseLayout
+  title="Privacy Policy"
+  breadcrumb="Privacy Policy"
+  description="How Option One handles personal data on this website. There is no form, no mailing list and no advertising, the one measurement running is cookieless, and the only data you give us is what you put in an email."
+  noindex={true}>
+  <section class="legal">
+    <div class="wrap prose">
+      <p class="sec-mark mono">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="mono">Last updated: 09 August 2026</p>
+
+      <p>There is no enquiry form on this website, no account, no mailing list
+      and no advertising. Nothing on it asks you for personal data or submits
+      anything on your behalf. What it does publish is an email address, so if
+      you want to reach us you write to us from your own email account, in your
+      own words, and we hold what you chose to send. The one other thing that
+      runs is a cookieless measurement of how the site is read, which stores
+      nothing on your device and does not identify you.</p>
+      <p>This policy covers the website only. Personal data held under a client
+      engagement is governed by that engagement's own contract.</p>
+
+      <h2>Who we are</h2>
+      <p>Option One is a trading name. The trading name is the controller for
+      the data described here, and correspondence you send is held by the people
+      behind it. The entity, its company number and its registered office will
+      be stated here at launch.</p>
+      <p>Privacy matters can be raised through the
+      <a href={withBase('/contact')}>contact page</a>.</p>
+
+      <h2>What we collect</h2>
+      <p>Nothing through the site itself. There is nowhere on it to submit
+      information: no form, no field and nothing that sends anything anywhere.
+      The Get News tick box on the contact page is part of this rather than an
+      exception to it. It stores nothing, sets nothing on your device and posts
+      nothing. Ticking it adds one line to an email you have not sent yet, so
+      that if you do send it, you have asked us in your own message. You can
+      delete that line before sending, and nothing reaches us unless you press
+      send.</p>
+      <p>What we do hold is correspondence. When you write to the address
+      published on the <a href={withBase('/contact')}>contact page</a> we
+      receive your email address, your name if you give it, and whatever you put
+      in the message. We use it to answer you and to carry on the conversation
+      that follows. The lawful basis is our legitimate interest in responding to
+      people who choose to contact us, or, where you are writing about engaging
+      us, the steps taken at your request before entering a contract. That mail
+      is handled by Proton AG, our email provider, and is stored in their
+      encrypted mailboxes. We keep enquiries that do not lead anywhere for two
+      years and then delete them; correspondence that becomes a client
+      engagement is kept under that engagement's own terms.</p>
+      <p>We do measure how the site is read, using Cloudflare Web Analytics. It
+      records the page viewed, the site you arrived from, the country the visit
+      came from, the general browser and device type, and how quickly the page
+      loaded. It sets no cookie and stores nothing on your device. Cloudflare
+      states that it does not follow visitors over time by IP address, browser
+      user agent or any other fixed attribute, and does not fingerprint devices.
+      What reaches us is aggregate counts, from which you cannot be identified
+      or singled out. The <a href={withBase('/legal/cookies')}>cookie policy</a>
+      describes it in full.</p>
+      <p>The site is served by GitHub Pages. GitHub records technical request
+      data, including IP addresses, to serve pages and protect the service. That
+      is GitHub's own processing under its privacy statement; we have no access
+      to it.</p>
+
+      <h2>Cookies</h2>
+      <p>This site sets none. See the
+      <a href={withBase('/legal/cookies')}>cookie policy</a>.</p>
+
+      <h2>Sharing</h2>
+      <p>Two third parties are involved, and both act on our instructions.
+      Proton AG holds the mail you send us. Cloudflare, Inc. provides the
+      measurement described above. Nobody else sees your correspondence, and we
+      do not sell, rent or trade personal data in any circumstances.</p>
+
+      <h2>Where the data goes</h2>
+      <p>Proton is a Swiss company and your mail is stored in Switzerland, which
+      the United Kingdom recognises as providing an adequate level of data
+      protection, so no further transfer safeguard is needed.</p>
+      <p>Cloudflare is a United States company and processes measurement data
+      outside the United Kingdom. Those transfers are covered by Cloudflare's
+      data processing addendum, which applies the standard contractual clauses
+      together with the Information Commissioner's international data transfer
+      addendum, and by Cloudflare's certification under the UK extension to the
+      EU-US Data Privacy Framework. Everything else about this site is served
+      from GitHub Pages under GitHub's own arrangements.</p>
+
+      <h2>Your rights</h2>
+      <p>Under the UK GDPR you may ask for a copy of any personal data we hold
+      about you, have it corrected or erased, restrict or object to its use, or
+      receive it in a portable form. Requests can be made through the
+      <a href={withBase('/contact')}>contact page</a> and will be answered within
+      one month, free of charge.</p>
+      <p>If you are unhappy with our handling of your data you can complain to
+      the Information Commissioner's Office at
+      <a href="https://ico.org.uk/make-a-complaint" rel="noopener">ico.org.uk/make-a-complaint</a>
+      or on 0303 123 1113. We would rather you raised it with us first.</p>
+
+      <h2>Changes</h2>
+      <p>If a mailing list is added, or the measurement described above is
+      changed for one that identifies you, this policy will be updated before
+      the change goes live. That is how the contact address came to be published
+      on 08 August 2026: this page was amended in the same pass. The date at the
+      top shows when it was last revised.</p>
+    </div>
+  </section>
+</BaseLayout>

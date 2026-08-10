@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+import { cta } from '../../brand.config';
+import { absolute, ORG_ID } from '../../lib/seo';
+
+const summary = [
+  {
+    n: '01',
+    k: 'Recorded as it happens',
+    d: 'The material is captured while the work is being done, not reconstructed afterwards.',
+  },
+  {
+    n: '02',
+    k: 'Made to be understood',
+    d: 'Built for the decision it has to inform, and for the person who has to take it.',
+  },
+  {
+    n: '03',
+    k: 'Held to the same standard',
+    d: 'Nothing is asserted that cannot be shown.',
+  },
+];
+
+const covers = [
+  {
+    name: 'Film',
+    line: 'Documentary and record, shot on site, including places a crew cannot ordinarily be sent.',
+  },
+  {
+    name: 'Sound',
+    line: 'Original score and audio, and the recording of places as they actually are.',
+  },
+  {
+    name: 'Written',
+    line: 'Reports, briefs and the long-form account, written for the reader who has to act on them.',
+  },
+  {
+    name: 'Identity and outreach',
+    line: 'How the undertaking presents itself, to whom, and in what order they hear about it.',
+  },
+  {
+    name: 'The archive',
+    line: 'The material held, catalogued and still usable in ten years, rather than lost on a drive.',
+  },
+];
+
+const others = [
+  { name: 'Design', href: '/services/design', line: 'What should exist, how it works, and in what order, settled before anything is committed.' },
+  { name: 'Build', href: '/services/build', line: 'Make it. The working thing, not a specification handed to someone else.' },
+  { name: 'Integrate', href: '/services/integrate', line: 'Put it into the organisation so it holds, and depends on no one person.' },
+];
+
+const serviceSchema = [
+  {
+    '@type': 'Service',
+    '@id': `${absolute('/services/communicate')}#service`,
+    name: 'Communicate',
+    serviceType: 'Film, sound and written record for projects and investors',
+    description:
+      'Film, sound, written record, identity and archive. The account of an undertaking, made where the work is, for the people who have to understand it.',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Communicate',
+      itemListElement: covers.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: c.name, description: c.line },
+      })),
+    },
+  },
+];
+---
+<BaseLayout
+  title="Communicate — Film, Sound and Written Record"
+  breadcrumb="Communicate"
+  description="Film, sound and the written word, made where the work is. The record of an undertaking, for the investors, boards and public who have to understand it."
+  schema={serviceSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Communicate</p>
+      <div class="sect-body">
+        <h1>The material, captured while the work is done.</h1>
+        <p class="lede">The record and the telling. Film, sound and the written word, for
+        work that has to be understood by people who were not there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">In short</p>
+      <div class="sect-body">
+        <div class="facts reveal">
+          {summary.map((s) => (
+            <div class="fact">
+              <span class="n">{s.n}</span>
+              <span class="k">{s.k}</span>
+              <span class="d">{s.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">What it covers</p>
+      <div class="sect-body">
+        {covers.map((c) => (
+          <div class="row reveal">
+            <div class="body">
+              <h3>{c.name}</h3>
+              <p>{c.line}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Why it sits here</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">Why this sits inside the firm.</h2>
+        <div class="prose reveal">
+          <p>Work of this kind is usually commissioned from people who will not go where
+          it happens, or cannot. The binding constraint is not the camera or the edit. It
+          is the capability to operate in the conditions at all, and that is the same
+          capability the rest of the firm is retained for.</p>
+          <p>So it sits inside the firm rather than beside it. What is recorded here is
+          work the firm was already running.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">The others</p>
+      <div class="sect-body">
+        {others.map((o) => (
+          <a class="rowlink" href={withBase(o.href)}><div class="row reveal">
+            <div class="body">
+              <h3>{o.name}</h3>
+              <p>{o.line}</p>
+            </div>
+            <span class="go">View →</span>
+          </div></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">Commissioned on its own or alongside the work.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>It runs on the firm's own undertakings and on other people's.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

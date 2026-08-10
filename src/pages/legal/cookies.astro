@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+---
+<BaseLayout
+  title="Cookie Policy"
+  breadcrumb="Cookie Policy"
+  description="What this website stores in your browser, and how to change it. This site sets no cookies."
+  noindex={true}>
+  <section class="legal">
+    <div class="wrap prose">
+      <p class="sec-mark mono">Legal</p>
+      <h1>Cookie Policy</h1>
+      <p class="mono">Last updated: 07 August 2026</p>
+
+      <h2>The short version</h2>
+      <p>This website does not use cookies. It does not track you across other
+      sites, it carries no advertising, and it asks you to consent to nothing,
+      because nothing is stored on your device that you did not ask for.</p>
+      <p>One small preference is kept in your browser, and one measurement
+      script runs. Both are described below.</p>
+
+      <h2>What is stored on your device</h2>
+      <p>A single value, <strong>opt-theme</strong>, held in your browser's local
+      storage. It contains one word, either <strong>light</strong> or
+      <strong>dark</strong>, so that the site opens in the theme you chose the
+      last time you were here. It stays until you clear it.</p>
+      <p>This value is created only if you use the light and dark toggle in the
+      site header. It never leaves your browser, it is not sent to us or to anyone
+      else, and it holds nothing that identifies you. Under the Privacy and
+      Electronic Communications Regulations, storage of this kind is exempt from
+      the consent requirement because it exists solely to deliver something you
+      explicitly asked for.</p>
+
+      <h2>Measurement</h2>
+      <p>We use Cloudflare Web Analytics to see how many people read the site
+      and which pages they read. It was chosen because it works without cookies:
+      it stores no identifier on your device, places nothing there for you to
+      consent to, and cannot follow you to other websites.</p>
+      <p>It records the page viewed, the site you arrived from, the country the
+      visit came from, the general browser and device type, and how quickly the
+      page loaded. Cloudflare states that it does not follow you over time by
+      your IP address, your browser's user agent or any other fixed attribute,
+      and does not fingerprint your device. Visits are counted by noticing that
+      a page view arrived from a different website, not by recognising you. The
+      figures reach us in aggregate: we cannot identify you from them, and we
+      cannot pick your visit out of them.</p>
+      <p>The script is loaded from
+      <strong>static.cloudflareinsights.com</strong>, which is the only external
+      network call this site makes.</p>
+
+      <h2>What this site does not do</h2>
+      <ul>
+        <li>It sets no cookies of any kind.</li>
+        <li>It carries no advertising, and no advertising or marketing tags.</li>
+        <li>It runs no cross-site tracking, and no social media or other
+        third-party tracking code.</li>
+        <li>It embeds no social media buttons, videos or maps that would load
+        third-party code.</li>
+        <li>It loads no fonts from external networks. Fonts are served from this
+        site's own domain.</li>
+        <li>It builds no profile of you, and takes no automated decisions about
+        you.</li>
+      </ul>
+
+      <h2>Managing what is stored</h2>
+      <p>You can remove the theme preference at any time by clearing site data for
+      optionone.io in your browser settings. Every major browser offers this,
+      usually under privacy or site settings. The site will still work; it will
+      simply open in its default light theme, or follow your system setting, until
+      you choose again.</p>
+      <p>If you block local storage entirely, the site continues to function
+      normally and your theme choice is not remembered between visits.</p>
+      <p>The measurement script stores nothing, so there is nothing to clear. If
+      you would rather it did not run at all, any standard content blocker will
+      stop it, and the site works exactly the same without it.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If cookies or any tracking technology are ever introduced to this site,
+      this page will be updated and, where the law requires it, your consent will
+      be asked for before anything is set. The date at the top shows when this was
+      last revised.</p>
+
+      <h2>More detail</h2>
+      <p>How personal data is handled more generally is set out in our
+      <a href={withBase('/legal/privacy')}>privacy policy</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

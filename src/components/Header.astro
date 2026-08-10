@@ -1,0 +1,27 @@
+---
+import { brand, nav } from '../brand.config';
+import { withBase, routePath } from '../lib/base';
+const path = routePath(Astro.url.pathname);
+---
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="brand" href={withBase('/')} aria-label={`${brand.name} — home`}>
+
+      <img class="on-light" src={withBase('/assets/brand/logo-lockup-dark.svg')} alt={brand.name} width="252" height="66" />
+      <img class="on-dark" src={withBase('/assets/brand/logo-lockup-light.svg')} alt="" aria-hidden="true" width="252" height="66" />
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        {nav.map((item) => (
+          <li>
+            <a href={withBase(item.href)} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <button class="toggle" id="themeBtn" aria-label="Toggle colour theme">Dark</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>

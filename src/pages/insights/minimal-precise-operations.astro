@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+import { cta } from '../../brand.config';
+import { absolute, ORG_ID } from '../../lib/seo';
+
+const published = '2026-08-07';
+const publishedLabel = '7 August 2026';
+
+const img = '/assets/insights/minimal-precise-operations';
+const widths = [640, 960, 1440, 1920];
+const srcset = (ext: string) =>
+  widths.map((w) => `${withBase(`${img}-${w}.${ext}`)} ${w}w`).join(', ');
+
+const articleSchema = [
+  {
+    '@type': 'Article',
+    '@id': `${absolute('/insights/minimal-precise-operations')}#article`,
+    headline: 'When a minimal operation generates disproportionate returns',
+    description:
+      'The three conditions under which a minimal operation returns faster decisions and fewer points of delay, what those returns are actually paid for with, and the order the operation has to be built in.',
+    datePublished: published,
+    dateModified: published,
+    inLanguage: 'en-GB',
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    image: absolute('/assets/insights/minimal-precise-operations-og.jpg'),
+    mainEntityOfPage: absolute('/insights/minimal-precise-operations'),
+    isPartOf: { '@id': `${absolute('/')}#website` },
+    about: [
+      'Operational design',
+      'Team sizing',
+      'Operational redundancy',
+      'Remote and field operations',
+    ],
+  },
+];
+---
+<BaseLayout
+  title="When a Minimal Operation Generates Disproportionate Returns"
+  breadcrumb="When a minimal operation generates disproportionate returns"
+  description="Minimal is a design choice, not a cost-cutting exercise. The three conditions under which a small operation returns faster decisions and fewer points of delay, what those returns are paid for with, and the order it has to be built in."
+  image="/assets/insights/minimal-precise-operations-og.jpg"
+  imageAlt="Three people working with survey equipment on a rocky summit above an ice sheet, backlit by a low sun."
+  schema={articleSchema}>
+
+  <article>
+
+    <section class="page-head">
+      <div class="wrap sect">
+        <p class="sec-mark mono">Insight<br /><time datetime={published}>{publishedLabel}</time></p>
+        <div class="sect-body">
+          <h1>When a minimal operation generates disproportionate returns.</h1>
+          <p class="lede">Minimal is a design choice, not a cost-cutting exercise. Under
+          the right conditions it delivers faster decisions, fewer points of delay, and
+          the ability to finish unique work inside fixed windows that larger structures
+          often miss.</p>
+          <p class="lede">Three conditions determine whether those returns appear.</p>
+        </div>
+      </div>
+    </section>
+
+    <figure class="article-figure">
+      <picture>
+        <source type="image/avif" srcset={srcset('avif')} sizes="100vw" />
+        <img
+          src={withBase(`${img}-1440.jpg`)}
+          srcset={srcset('jpg')}
+          sizes="100vw"
+          width="1920"
+          height="1281"
+          decoding="async"
+          fetchpriority="high"
+          alt="Three people working with survey equipment on a rocky summit above an ice sheet, backlit by a low sun." />
+      </picture>
+    </figure>
+
+    <section>
+      <div class="wrap sect">
+        <p class="sec-mark mono">The conditions</p>
+        <div class="sect-body">
+          <h2 class="band-title reveal">The three conditions.</h2>
+          <div class="prose article-prose reveal">
+            <p>A large organisation is efficient at repeating a known process. Its
+            overhead buys coordination, and that coordination pays for itself when the
+            same procedure runs often enough to justify the cost of documenting it. A
+            unique piece of work has nothing to amortise. It happens once, so every layer
+            of coordination is paid in full against a single use.</p>
+
+            <p>The three conditions that must hold together are:</p>
+
+            <ul>
+              <li>The work is one-off or being done for the first time, so there is no
+              established procedure to inherit.</li>
+              <li>The window is fixed and cannot be moved, so success is measured solely
+              by what is completed inside it.</li>
+              <li>The information needed for decisions sits with the people doing the
+              work, not with those formally accountable for it.</li>
+            </ul>
+
+            <p>When all three are present, a small operation is the structure that can
+            decide at the required speed. Decision rights sit with the people who hold
+            the information. The number of places the work can stall shrinks. Progress
+            that a larger organisation would still be circulating for approval can be
+            completed.</p>
+
+            <p>If any one condition is missing, scale is the better answer. Recurring
+            work should be built to recur. A movable window can absorb a longer decision
+            chain. Information that travels reliably can be acted on from anywhere. In
+            those cases, staying small is a false economy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="wrap sect">
+        <p class="sec-mark mono">The returns</p>
+        <div class="sect-body">
+          <h2 class="band-title reveal">What the returns actually are.</h2>
+          <div class="prose article-prose reveal">
+            <p>Minimal does not reduce total cost. It moves cost from headcount into
+            selection, preparation and equipment.</p>
+
+            <p>Every person must be competent across more than one discipline. People
+            who are genuinely strong in three areas are scarce and priced accordingly; a
+            cheaper substitute does not work. Redundancy is designed in advance rather
+            than staffed: two people trained on each critical task, the current state of
+            the work written so anyone can continue it, and no single piece of equipment
+            able to stop the whole. There is no spare capacity. Precision becomes
+            structural because an error has nowhere to go.</p>
+
+            <p>What is purchased is decision latency measured in hours rather than days,
+            and a sharply reduced surface area for delay. On unique, time-bound work,
+            that difference often decides whether the undertaking succeeds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap sect">
+        <p class="sec-mark mono">The build</p>
+        <div class="sect-body">
+          <h2 class="band-title reveal">How to build it.</h2>
+          <div class="prose article-prose reveal">
+            <p>The sequence matters.</p>
+
+            <ol>
+              <li>Settle decision rights first. Identify what must be decided quickly, on
+              what information, and by whom without upward referral. Keep the list of
+              decisions that must still come back short. Every item on that list is a
+              place the operation waits.</li>
+              <li>Size the team from the decision map, not from a task list. Add a person
+              only where the alternative is a decision waiting. Skipping this step is the
+              most common reason operations become larger than necessary.</li>
+              <li>Build redundancy in the same pass. Cover for every critical task, a
+              running record of the work's state, and a clear answer to what happens if
+              any one person, item or route is unavailable. Include the firm itself in
+              that test.</li>
+              <li>Rehearse recovery, not the plan. Conditions will test the plan without
+              help. Practise the sequence people will run when something has already
+              failed, the window is closing, and there is no time left to invent a
+              response.</li>
+              <li>Record the work as it happens. An operation understood only by those
+              who were present is unfinished. Writing it at the time costs an hour.
+              Reconstructing it later becomes a separate project and is never as
+              accurate.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="wrap sect">
+        <p class="sec-mark mono">The limits</p>
+        <div class="sect-body">
+          <h2 class="band-title reveal">What minimal is not.</h2>
+          <div class="prose article-prose reveal">
+            <p>It is not understaffing. An understaffed operation is simply a small one
+            without designed redundancy.</p>
+
+            <p>It is not informality. Small operations need more written procedure than
+            large ones, because there is no one to ask and no department to absorb
+            ambiguity.</p>
+
+            <p>It is not heroism. If success depends on one person performing
+            extraordinarily, the operation is fragile, not minimal.</p>
+
+            <p>It is not permanent. Minimal fits the undertaking, not the organisation
+            that inherits it. Handover to a normally staffed operation must be designed
+            from the start.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap sect">
+        <p class="sec-mark mono">The test</p>
+        <div class="sect-body">
+          <h2 class="band-title reveal">The practical test.</h2>
+          <div class="prose article-prose reveal">
+            <p>Before adding capacity, ask what the addition costs in latency, not what
+            else it could cover. Coordination is always bought. On a unique undertaking
+            with a fixed window it is bought at full price against a single use. Minimal
+            is the right answer only where that price is not worth paying.</p>
+
+            <p>When the three conditions hold, the returns are clear: faster decisions,
+            fewer delays, and the ability to finish work that larger structures would
+            still be coordinating.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">Some undertakings do not fit an existing firm.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>If yours is one of them, the conversation starts with the conditions
+          rather than with a proposal.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

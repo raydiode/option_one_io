@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/base';
+import { absolute, ORG_ID } from '../lib/seo';
+import { brand } from '../brand.config';
+
+const channelOpen = brand.email !== '';
+const [mailUser, mailDomain] = channelOpen ? brand.email.split('@') : ['', ''];
+
+const description = channelOpen
+  ? 'Option One is retained to design, build, integrate and communicate critical operations. Write to us directly.'
+  : 'Option One is retained to design, build, integrate and communicate critical operations. The enquiry channel opens at launch.';
+
+const contactSchema = [
+  {
+    '@type': 'ContactPage',
+    '@id': `${absolute('/contact')}#contactpage`,
+    about: { '@id': ORG_ID },
+    name: 'Contact Option One',
+  },
+];
+---
+<BaseLayout
+  title="Contact — Option One"
+  breadcrumb="Contact"
+  description={description}
+  schema={contactSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Contact</p>
+      <div class="sect-body">
+        <h1>Where do you want to go from here?</h1>
+
+        <p class="lede">Every meaningful partnership starts with a conversation.</p>
+        <p class="lede" style="margin-bottom:var(--sp-l)">We invite you to share
+        the ambitions and challenges shaping your organisation. In a focused
+        discovery discussion, we will explore how our experience and insight can
+        help you move forward with clarity and confidence.</p>
+
+        <div class="door">
+          <a class="btn btn-ghost" id="mail"
+             href={withBase('/contact')}
+             data-u={mailUser} data-d={mailDomain}>Message Us</a>
+          <label class="opt-in" for="news">
+            <input type="checkbox" id="news" />
+            <span>Get News</span>
+          </label>
+          <button type="button" class="copy" id="copy" hidden>Copy address</button>
+        </div>
+
+        <p class="door-note">If you would like to receive news from us, tick the
+        Get News box before selecting Message Us.</p>
+
+        <p class="visually-hidden" id="said" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+    const mail = document.getElementById('mail');
+    const news = document.getElementById('news') as HTMLInputElement | null;
+    const copy = document.getElementById('copy') as HTMLButtonElement | null;
+    const user = mail?.dataset.u;
+    const domain = mail?.dataset.d;
+
+    if (mail && user && domain) {
+      const address = `${user}@${domain}`;
+
+      const subject = 'Enquiry via optionone.io';
+      const body = 'Get News = true';
+
+      const set = () => {
+        const query = `?subject=${encodeURIComponent(subject)}`
+          + (news?.checked ? `&body=${encodeURIComponent(body)}` : '');
+        mail.setAttribute('href', `mailto:${address}${query}`);
+      };
+
+      set();
+      news?.addEventListener('change', set);
+
+      if (copy) {
+        const said = document.getElementById('said');
+        const label = copy.textContent;
+        let restore: number | undefined;
+
+        copy.hidden = false;
+        copy.addEventListener('click', async () => {
+          window.clearTimeout(restore);
+          try {
+            await navigator.clipboard.writeText(address);
+            copy.textContent = 'Copied';
+            copy.dataset.done = '';
+            delete copy.dataset.plain;
+            if (said) said.textContent = 'Address copied to the clipboard.';
+            restore = window.setTimeout(() => {
+              copy.textContent = label;
+              delete copy.dataset.done;
+              if (said) said.textContent = '';
+            }, 2400);
+          } catch {
+            copy.textContent = address;
+            delete copy.dataset.done;
+            copy.dataset.plain = '';
+            if (said) said.textContent = `The address is ${address}.`;
+          }
+        });
+      }
+    }
+  </script>
+</BaseLayout>

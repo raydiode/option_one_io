@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+
+const posts: { date: string; label: string; title: string; summary: string; href: string }[] = [
+  {
+    date: '2026-08-07',
+    label: '7 August 2026',
+    title: 'When a minimal operation generates disproportionate returns',
+    summary: 'Minimal is a design choice, not a cost-cutting exercise. The three conditions that produce the returns, what those returns are paid for with, and the order the operation has to be built in.',
+    href: '/insights/minimal-precise-operations',
+  },
+];
+---
+<BaseLayout
+  title="Insights on Operations and Resilience"
+  breadcrumb="Insights"
+  description="Field-tested notes on operations, resilience and the systems businesses run on, from Option One, a global operations consultancy based in London.">
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Insights</p>
+      <div class="sect-body">
+        <h1>Insights.</h1>
+        <p class="lede">Working notes on operations, resilience and the systems
+        businesses depend on.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap">
+      {posts.length > 0 ? (
+        <div class="post-list reveal">
+          {posts.map((p) => (
+            <a class="post" href={withBase(p.href)}>
+              <time datetime={p.date}>{p.label}</time>
+              <div>
+                <h3>{p.title}</h3>
+                <p>{p.summary}</p>
+              </div>
+              <span class="go mono">Read →</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="empty-note reveal">The first pieces are in preparation. Everything
+        published here is written against work actually done.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

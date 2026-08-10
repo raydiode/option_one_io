@@ -1,0 +1,34 @@
+---
+import { brand, nav, legalNav } from '../brand.config';
+import { withBase } from '../lib/base';
+
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap">
+    <div class="foot-bar">
+      <a class="foot-brand" href={withBase('/')} aria-label={`${brand.name} — home`}>
+        <img class="on-light" src={withBase('/assets/brand/logo-lockup-dark.svg')} alt={brand.name} width="175" height="46" />
+        <img class="on-dark" src={withBase('/assets/brand/logo-lockup-light.svg')} alt="" aria-hidden="true" width="175" height="46" />
+      </a>
+
+      <nav class="foot-links" aria-label="Footer">
+        {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        <span class="sep" aria-hidden="true">·</span>
+        {legalNav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      </nav>
+    </div>
+
+    <p class="foot-meta">
+      &copy; <span id="footYear">{year}</span> {brand.name}. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('footYear');
+    var now = new Date().getFullYear();
+    if (el && now > parseInt(el.textContent, 10)) el.textContent = String(now);
+  })();
+</script>

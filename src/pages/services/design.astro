@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+import { cta } from '../../brand.config';
+import { absolute, ORG_ID } from '../../lib/seo';
+
+const summary = [
+  {
+    n: '01',
+    k: 'Settled, not assumed',
+    d: 'The decisions that cannot be reversed later are taken first.',
+  },
+  {
+    n: '02',
+    k: 'Sequenced',
+    d: 'What has to be true before each stage begins, and the point after which a choice is closed.',
+  },
+  {
+    n: '03',
+    k: 'Complete before it starts',
+    d: 'A plan that can be executed by people who were not in the room when it was written.',
+  },
+];
+
+const covers = [
+  {
+    name: 'Architecture',
+    line: 'The structure the undertaking will run on: what the parts are, what each one owns, and how they meet.',
+  },
+  {
+    name: 'Governance and reporting',
+    line: 'Who decides what, on what information, and how often. Boards, delegations, and the reporting line beneath them.',
+  },
+  {
+    name: 'Sequence and dependency',
+    line: 'The order the work has to happen in, and the point at which a delay stops being a delay and becomes a failure.',
+  },
+  {
+    name: 'Exposure',
+    line: 'We name the single points of failure and concentration before they are tested, and state what the undertaking does when one of them goes.',
+  },
+  {
+    name: 'The specification',
+    line: 'What is to be built, to what standard, and how anyone will know it was met.',
+  },
+];
+
+const others = [
+  { name: 'Build', href: '/services/build', line: 'Make it. The working thing, not a specification handed to someone else.' },
+  { name: 'Integrate', href: '/services/integrate', line: 'Put it into the organisation so it holds, and depends on no one person.' },
+  { name: 'Communicate', href: '/services/communicate', line: 'The record and the telling, for work that has to be understood by people who were not there.' },
+];
+
+const serviceSchema = [
+  {
+    '@type': 'Service',
+    '@id': `${absolute('/services/design')}#service`,
+    name: 'Design',
+    serviceType: 'System architecture, operating model and structural design',
+    description:
+      'Architecture, governance and reporting, sequence and dependency, exposure and specification, settled before anything is committed.',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Design',
+      itemListElement: covers.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: c.name, description: c.line },
+      })),
+    },
+  },
+];
+---
+<BaseLayout
+  title="Design — System Architecture and Operating Model"
+  breadcrumb="Design"
+  description="What should exist, how it works and in what order. System architecture, governance, sequence and exposure, settled before anything is committed."
+  schema={serviceSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Design</p>
+      <div class="sect-body">
+        <h1>The plan the undertaking will be built from.</h1>
+        <p class="lede">What should exist, how it works, and in what order. Architecture,
+        structure and sequence, with the decisions that have to be taken before anything is
+        committed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">In short</p>
+      <div class="sect-body">
+        <div class="facts reveal">
+          {summary.map((s) => (
+            <div class="fact">
+              <span class="n">{s.n}</span>
+              <span class="k">{s.k}</span>
+              <span class="d">{s.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">What it covers</p>
+      <div class="sect-body">
+        {covers.map((c) => (
+          <div class="row reveal">
+            <div class="body">
+              <h3>{c.name}</h3>
+              <p>{c.line}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The problem</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">Why the effort is front-loaded.</h2>
+        <div class="prose reveal">
+          <p>Design failures are not detected when they are made. They are decisions taken
+          quickly, and usually reasonably, and what they remove is not capability but
+          optionality: choices that would otherwise still be open later. The cost of
+          reversing one rises with everything built on top of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">The others</p>
+      <div class="sect-body">
+        {others.map((o) => (
+          <a class="rowlink" href={withBase(o.href)}><div class="row reveal">
+            <div class="body">
+              <h3>{o.name}</h3>
+              <p>{o.line}</p>
+            </div>
+            <span class="go">View →</span>
+          </div></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">Design is commissioned first, or on its own.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>Most undertakings begin here, whether or not the build follows.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

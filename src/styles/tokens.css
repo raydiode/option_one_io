@@ -1,0 +1,61 @@
+:root {
+  --polar-night: #0C141E;
+  --glacier:     #5D7181;
+  --ice:         #7FB2C6;
+  --ice-deep:    #2C5E74;
+  --snow:        #EDF1F4;
+  --north-star:  #FFFFFF;
+
+  --ground:      var(--snow);
+  --surface:     #FFFFFF;
+  --surface-2:   #E4E9ED;
+  --ink:         var(--polar-night);
+  --muted:       var(--glacier);
+
+  --ink-body:    color-mix(in oklab, var(--ink) 90%, var(--ground));
+  --line:        #C6D0D7;
+  --brand:       var(--ice-deep);
+  --accent:      var(--ice-deep);
+  --accent-soft: rgba(44, 94, 116, .07);
+  --accent-ink:  var(--snow);
+  --star:        var(--polar-night);
+
+  --font-display: "GT Sectra", "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-body:    "Söhne", "Instrument Sans", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-mono:    "GT America Mono", "JetBrains Mono", "Roboto Mono", ui-monospace, monospace;
+
+  --s--1: .875rem; --s-0: 1rem;    --s-1: 1.25rem;  --s-2: 1.563rem;
+  --s-3: 1.953rem; --s-4: 2.441rem; --s-5: 3.052rem;
+
+  --sp-s: 1rem; --sp-m: 1.5rem; --sp-l: 2.5rem;
+  --sp-xl: 4rem; --sp-2xl: 6rem; --sp-3xl: 9rem;
+
+  --measure: 56ch;
+  --edge: clamp(1.25rem, 5vw, 4.5rem);
+  --shell: 1200px;
+  --nav-h: 5.5rem;
+
+  --logo-h:             34px;
+  --logo-box-h:         64px;
+  --logo-max-w:         230px;
+  --logo-gap:           var(--sp-xl);
+  --logo-ink:           var(--muted);
+  --logo-ink-hover:     var(--accent);
+  --logo-opacity:       .55;
+  --logo-opacity-hover: 1;
+  --logo-scroll:        45s;
+}
+
+[data-theme="dark"] {
+  --ground:      var(--polar-night);
+  --surface:     #14202C;
+  --surface-2:   #14202C;
+  --ink:         var(--snow);
+  --muted:       #8DA0AE;
+  --line:        #223140;
+  --brand:       var(--ice);
+  --accent:      var(--ice);
+  --accent-soft: rgba(127, 178, 198, .08);
+  --accent-ink:  var(--polar-night);
+  --star:        var(--north-star);
+}

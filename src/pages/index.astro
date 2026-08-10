@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand, clients, cta } from '../brand.config';
+import { absolute, ORG_ID } from '../lib/seo';
+import { withBase } from '../lib/base';
+
+const description =
+  'Option One is retained to design, build and integrate difficult undertakings, and to record them properly. A global operations consultancy based in London, United Kingdom.';
+
+const serviceSchema = [
+  {
+    '@type': 'Service',
+    name: 'Design',
+    serviceType: 'System architecture, operating model and structural design',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    url: absolute('/services/design'),
+  },
+  {
+    '@type': 'Service',
+    name: 'Build',
+    serviceType: 'Operational build, systems, procedure and automation',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    url: absolute('/services/build'),
+  },
+  {
+    '@type': 'Service',
+    name: 'Integrate',
+    serviceType: 'Operational integration, training and handover',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    url: absolute('/services/integrate'),
+  },
+  {
+    '@type': 'Service',
+    name: 'Communicate',
+    serviceType: 'Film, sound and written record for projects and investors',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    url: absolute('/services/communicate'),
+  },
+];
+---
+<BaseLayout
+  heroHeader={true}
+  title="Global Operational Resilience and Delivery"
+  description={description}
+  schema={serviceSchema}>
+
+  <section class="hero">
+    <div class="hero-img"></div>
+    <svg class="graticule" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#7FB2C6" stroke-width="1">
+        <path d="M0,160 Q600,90 1200,160" /><path d="M0,320 Q600,260 1200,320" />
+        <path d="M0,480 Q600,430 1200,480" /><path d="M0,640 Q600,600 1200,640" />
+        <path d="M200,0 Q150,400 200,800" /><path d="M480,0 Q450,400 480,800" />
+        <path d="M720,0 Q750,400 720,800" /><path d="M1000,0 Q1050,400 1000,800" />
+      </g>
+    </svg>
+    <div class="wrap">
+      <p class="eyebrow mono"><span class="rule"></span>{brand.disciplines}<span class="rule"></span></p>
+      <h1>Difficult things, built correctly.</h1>
+      <p class="lede">{brand.tagline}</p>
+      <div class="actions">
+        <a class="btn btn-ghost" href={withBase('/services')}>What we do</a>
+        <a class="btn btn-ghost" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">The premise</p>
+      <div class="sect-body">
+      <h2 class="band-title reveal">Operational risk has changed.</h2>
+      <div class="prose reveal">
+        <p>For thirty years operational risk was an execution problem. Supply arrived,
+        energy cleared, approvals followed, and capability could be bought at the point
+        it was needed. Delivery was a question of management.</p>
+        <p>That has changed. Supply, energy, minerals, labour, regulation and capital are
+        now set as much by borders and politics as by the market, and the effect does not
+        arrive as price. It arrives as sequence: the input that comes late, the approval
+        that does not come, the person who cannot be hired in time.</p>
+        <p>What that exposes is operational debt. The sequence nobody set, the dependency
+        nobody removed, the decision that was never actually taken. It carries no cost
+        while conditions hold, and it is called in when they change.</p>
+        <p>Resilience is that debt repaid in advance. It cannot be bought at the point of
+        failure, which is the only point at which most organisations go looking for it.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The work</p>
+      <div class="sect-body">
+      <h2 class="band-title reveal">One standard, four capabilities.</h2>
+      <div class="prose reveal">
+        <p>There is no single description of the work. It is commissioned when something
+        critical has to be designed, built, put right or made ready, and usually because
+        it has not been done before by the people commissioning it. The sector and the
+        asset change with every engagement.</p>
+        <p>How the work is done does not change. Every engagement runs through the same
+        four capabilities, <a href={withBase('/services')}>design, build, integrate and
+        communicate</a>, and everything they produce is held to the same standard:
+        <a href={withBase('/about')}>resilience, contingency, redundancy and flow</a>.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap sect">
+      <p class="coord mono reveal">Standing</p>
+      <div class="sect-body">
+      <h2 class="reveal">Proven under pressure, <em>not in theory.</em></h2>
+      <div class="prose reveal">
+        <p>The method did not come from theory. It was formed in high-risk operations,
+        where margins are constructed rather than assumed. Precision in the planning,
+        craft in the execution, disciplined use of the resource available, and procedures
+        that still hold when the conditions change.</p>
+        <p>Robust by design, resilient in use.</p>
+        <p>The risk is resolved in advance. The plan assumes failure at each critical
+        point and carries a second route for it, and what cannot be anticipated is left to
+        judgement, held by people trained to exercise it.</p>
+        <p>The work changes with every engagement; the pattern does not.</p>
+        <p>The standard: resilience, contingency, redundancy and flow, transposes
+        because fragility has the same shape wherever it appears. Discipline is what makes
+        an operation run predictably and keep running through adversity.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap sect">
+      <p class="sec-mark mono">What we do</p>
+      <div class="sect-body">
+      <a class="rowlink" href={withBase('/services/design')}><div class="row reveal">
+        <div class="body"><h3>Design</h3><p>What should exist, how it works, and in what order. Architecture, structure and sequence, with the decisions that have to be taken before anything is committed.</p></div>
+        <span class="go">View →</span>
+      </div></a>
+      <a class="rowlink" href={withBase('/services/build')}><div class="row reveal">
+        <div class="body"><h3>Build</h3><p>Make it. Not a specification handed to someone else, but the working thing: systems, procedures, automation, and people trained to run it.</p></div>
+        <span class="go">View →</span>
+      </div></a>
+      <a class="rowlink" href={withBase('/services/integrate')}><div class="row reveal">
+        <div class="body"><h3>Integrate</h3><p>Put it into the organisation so it holds. It runs without us, and it depends on no one person.</p></div>
+        <span class="go">View →</span>
+      </div></a>
+      <a class="rowlink" href={withBase('/services/communicate')}><div class="row reveal">
+        <div class="body"><h3>Communicate</h3><p>The record and the telling. Film, sound and the written word, for work that has to be understood by people who were not there.</p></div>
+        <span class="go">View →</span>
+      </div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Contact</p>
+      <div class="sect-body">
+      <h2 class="reveal">Engagements open with an assessment.</h2>
+      <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+        <p>We establish what the work actually requires before anything is proposed.</p>
+      </div>
+      <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  {clients.length > 0 && (
+    <section class="clients">
+      <div class="wrap">
+        <p class="sec-mark reveal">Previous clients, collaborators and partners:</p>
+        <div class="clientstrip">
+          <div class="clientstrip-track">
+          <div class="clientstrip-group">
+            {clients.map((c) => c.src
+              ? <a class="client-logo" href={c.url} target="_blank" rel="noopener noreferrer"
+                   style={`--logo-src:url("${withBase(c.src)}");--logo-ratio:${c.ratio ?? 3};--logo-scale:${c.scale ?? 1}`}>
+                  <span class="visually-hidden">{c.name}</span>
+                </a>
+              : <a class="client-word" href={c.url} target="_blank" rel="noopener noreferrer">{c.name}</a>)}
+          </div>
+            <div class="clientstrip-group" aria-hidden="true">
+              {clients.map((c) => c.src
+                ? <a class="client-logo" href={c.url} target="_blank" rel="noopener noreferrer" tabindex="-1"
+                     style={`--logo-src:url("${withBase(c.src)}");--logo-ratio:${c.ratio ?? 3};--logo-scale:${c.scale ?? 1}`}></a>
+                : <a class="client-word" href={c.url} target="_blank" rel="noopener noreferrer" tabindex="-1">{c.name}</a>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/base';
+import { cta } from '../../brand.config';
+import { absolute, ORG_ID } from '../../lib/seo';
+
+const summary = [
+  {
+    n: '01',
+    k: 'Built, not specified',
+    d: 'What is delivered is the working system, not a document describing one.',
+  },
+  {
+    n: '02',
+    k: 'Written down',
+    d: 'Procedure exists on paper and in the system, not in the memory of whoever set it up.',
+  },
+  {
+    n: '03',
+    k: 'Automated where it earns it',
+    d: 'Routine work runs without a person, so people are spent on the work that needs them.',
+  },
+];
+
+const covers = [
+  {
+    name: 'Systems and tooling',
+    line: 'The tools the work will actually run on, chosen, configured and connected to each other.',
+  },
+  {
+    name: 'Procedure',
+    line: 'What happens, when it happens, and who is accountable, written so it can be followed by someone who was not there when it was decided.',
+  },
+  {
+    name: 'Automation',
+    line: 'The routine paths, run without a person. Where that is worth doing, and where it is not.',
+  },
+  {
+    name: 'Supply and procurement',
+    line: 'What the operation depends on, held so that no single supplier can stop the work.',
+  },
+];
+
+const others = [
+  { name: 'Design', href: '/services/design', line: 'What should exist, how it works, and in what order, settled before anything is committed.' },
+  { name: 'Integrate', href: '/services/integrate', line: 'Put it into the organisation so it holds, and depends on no one person.' },
+  { name: 'Communicate', href: '/services/communicate', line: 'The record and the telling, for work that has to be understood by people who were not there.' },
+];
+
+const serviceSchema = [
+  {
+    '@type': 'Service',
+    '@id': `${absolute('/services/build')}#service`,
+    name: 'Build',
+    serviceType: 'Operational build, systems, procedure and automation',
+    description:
+      'Systems and tooling, procedure, automation, supply and procurement, and the training that makes it operable. The working thing, not a specification.',
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Place', name: 'Worldwide' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Build',
+      itemListElement: covers.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: c.name, description: c.line },
+      })),
+    },
+  },
+];
+---
+<BaseLayout
+  title="Build — Systems, Procedure and Automation"
+  breadcrumb="Build"
+  description="Systems, procedure, automation and the training to run them. We build what we design, so the gap between a recommendation and a working operation closes."
+  schema={serviceSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Build</p>
+      <div class="sect-body">
+        <h1>Delivered as an operation, not as a document.</h1>
+        <p class="lede">Make it. Not a specification handed to someone else, but the working
+        thing: systems, procedures, automation, and people trained to run it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">In short</p>
+      <div class="sect-body">
+        <div class="facts reveal">
+          {summary.map((s) => (
+            <div class="fact">
+              <span class="n">{s.n}</span>
+              <span class="k">{s.k}</span>
+              <span class="d">{s.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">What it covers</p>
+      <div class="sect-body">
+        {covers.map((c) => (
+          <div class="row reveal">
+            <div class="body">
+              <h3>{c.name}</h3>
+              <p>{c.line}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The problem</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">Why the gap is not tooling.</h2>
+        <div class="prose reveal">
+          <p>The tools have usually been bought and the procedures have usually been
+          written at least once. What has not been done is the work of making them one
+          thing that runs, and that work is unrewarding enough to be deferred
+          indefinitely.</p>
+          <p>So the firm builds rather than recommends. The distance between a
+          recommendation and a working operation is where most of the value is lost, and
+          it is the distance a client is paying us to cover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">The others</p>
+      <div class="sect-body">
+        {others.map((o) => (
+          <a class="rowlink" href={withBase(o.href)}><div class="row reveal">
+            <div class="body">
+              <h3>{o.name}</h3>
+              <p>{o.line}</p>
+            </div>
+            <span class="go">View →</span>
+          </div></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Next</p>
+      <div class="sect-body">
+        <h2 class="reveal">The build ends in a handover.</h2>
+        <div class="prose reveal" style="margin-bottom:var(--sp-l)">
+          <p>Scope is set once the design is settled, and the handover is part of it.</p>
+        </div>
+        <a class="btn btn-ghost reveal" href={withBase(cta.href)}>{cta.label}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
