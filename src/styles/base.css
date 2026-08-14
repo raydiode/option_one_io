@@ -201,6 +201,7 @@ nav a:hover, nav a[aria-current="page"] { color: var(--ink); }
   align-items: baseline; padding-block: var(--sp-l); border-top: 1px solid var(--line);
 }
 .rowlink:last-child .row { border-bottom: 1px solid var(--line); }
+.rowset .row:last-child { border-bottom: 1px solid var(--line); }
 .row .body h3 { font-size: var(--s-2); margin-bottom: .5rem; }
 
 .row .body p, .fold .body p { color: var(--muted); font-size: clamp(1.03125rem, 0.92rem + 0.45vw, 1.1875rem); line-height: 1.5; }
@@ -392,6 +393,28 @@ a.rowlink { display: contents; }
 .opt-in input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .door-note { margin-top: var(--sp-m); font-size: var(--s--1); color: var(--muted); max-width: 46ch; }
+.door-note + .door-note { margin-top: var(--sp-s); }
+.door-note a { color: var(--ink); border-bottom: 1px solid var(--line); transition: color .2s, border-color .2s; }
+.door-note a:hover { color: var(--accent); border-color: var(--accent); }
+
+.pick {
+  display: flex; align-items: center; gap: .6rem; cursor: pointer;
+  font-family: var(--font-mono); font-size: var(--s--1);
+  text-transform: uppercase; letter-spacing: .14em; color: var(--muted);
+  transition: color .2s;
+}
+.pick:hover { color: var(--ink); }
+
+.pick select {
+  font: inherit; letter-spacing: inherit; color: var(--ink);
+  background: none; padding: 0 0 .2rem; cursor: pointer;
+  border: 0; border-bottom: 1px solid var(--line);
+  -webkit-appearance: none; appearance: none;
+  transition: color .2s, border-color .2s;
+}
+.pick:hover select { border-color: var(--accent); }
+.pick select:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.pick select option { background: var(--ground); color: var(--ink); letter-spacing: normal; }
 
 .copy[hidden] { display: none; }
 .copy {

@@ -4,6 +4,7 @@ export const brand = {
   domain: 'optionone.io',
   url: 'https://optionone.io',
   email: 'enquiries@optionone.io',
+  applications: 'applications@optionone.io',
   newsletterAction: '',
   disciplines: 'Design · Build · Integrate · Communicate',
   analytics: 'c91c9c5f6c8244f5bf0af12910b2c778',
@@ -17,6 +18,11 @@ export const nav = [
   { label: 'Services', href: '/services' },
   { label: 'Insights', href: '/insights' },
   { label: 'Contact', href: '/contact' },
+] as const;
+
+// Footer only. Kept out of the primary nav so the buyer's path stays at five items.
+export const footNav = [
+  { label: 'Careers', href: '/careers' },
 ] as const;
 
 export const clients: {

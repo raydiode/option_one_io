@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/base';
+import { absolute, ORG_ID } from '../lib/seo';
+import { brand } from '../brand.config';
+
+const channelOpen = brand.applications !== '';
+const [mailUser, mailDomain] = channelOpen ? brand.applications.split('@') : ['', ''];
+
+// The four capabilities, read from the practitioner's side rather than the buyer's.
+const disciplines = [
+  {
+    name: 'Design',
+    body: [
+      'Establishing what should exist before anything is committed: the architecture, the sequence, and the decisions that have to be taken first.',
+      'Planners, operations designers, systems architects.',
+    ],
+  },
+  {
+    name: 'Build',
+    body: [
+      'Making the working thing rather than the specification for it: systems, procedures, automation, and the training that puts them into hands.',
+      'Engineers, builders, operators, trainers.',
+    ],
+  },
+  {
+    name: 'Integrate',
+    body: [
+      'Staying with an operation until it runs without us and depends on no one person.',
+      'Programme leads, embedded practitioners.',
+    ],
+  },
+  {
+    name: 'Communicate',
+    body: [
+      'The record and the telling, for people who were not there. Film, sound, photography and the written word.',
+      'Directors, editors, sound recordists, writers.',
+    ],
+  },
+];
+
+const description =
+  'Option One keeps a standing register of practitioners engaged per undertaking. Speculative applications are open across design, build, integrate and communicate.';
+
+const careersSchema = [
+  {
+    '@type': 'WebPage',
+    '@id': `${absolute('/careers')}#webpage`,
+    about: { '@id': ORG_ID },
+    name: 'Careers at Option One',
+    description,
+  },
+];
+---
+<BaseLayout
+  title="Careers"
+  breadcrumb="Careers"
+  description={description}
+  schema={careersSchema}>
+
+  <section class="page-head">
+    <div class="wrap sect">
+      <p class="sec-mark mono">Careers</p>
+      <div class="sect-body">
+        <h1>Unique talent for unique undertakings.</h1>
+        <p class="lede">Option One assembles the people an undertaking needs, for the
+        length of that undertaking. We keep a standing register of practitioners we can
+        call on, and it is open to speculative application at any time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">How the register is used</p>
+      <div class="sect-body">
+        <div class="prose reveal">
+          <p>Work arrives as a whole undertaking rather than as a role. What it will need
+          is settled once the architecture is, which is late and rarely the same twice.
+          Recruiting from a standing start at that point would put the wrong constraint on
+          the design.</p>
+          <p>So the register comes first. It is read when an undertaking is scoped and the
+          people on it are approached directly. Engagements are associate: self-employed,
+          for the undertaking, on terms set against the work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sect">
+      <p class="sec-mark mono">Disciplines</p>
+      <div class="sect-body">
+        <p class="lede" style="margin-bottom:var(--sp-l)">The same four capabilities the
+        firm is <a href={withBase('/services')}>retained for</a>, described here as the
+        work rather than the offer. Apply against the one you would want to be called for.</p>
+        <div class="rowset">
+          {disciplines.map((d) => (
+            <div class="row reveal">
+              <div class="body">
+                <h3>{d.name}</h3>
+                {d.body.map((p) => <p>{p}</p>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="wrap sect">
+      <p class="sec-mark mono">The bar</p>
+      <div class="sect-body">
+        <h2 class="band-title reveal">What is being assessed.</h2>
+        <div class="prose reveal">
+          <p>Whether you have been answerable for something working, and what you did when
+          it did not.</p>
+          <p>Sector matters less than that. Most of what we are asked to do has not been
+          done before by the people asking, so a career spent adjacent to it is worth more
+          than a title inside it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap sect">
+      <p class="sec-mark mono reveal">Apply</p>
+      <div class="sect-body">
+        <h2 class="reveal">Three things, sent once.</h2>
+        <div class="prose reveal">
+          <p>A short introduction saying what you want to be called for and why. Your CV
+          as a PDF, attached. And something about you the CV does not carry.</p>
+        </div>
+
+        <div class="door reveal">
+          <a class="btn btn-ghost" id="apply"
+             href={withBase('/careers')}
+             data-u={mailUser} data-d={mailDomain}>Apply</a>
+          <label class="pick" for="discipline">
+            <span>Discipline</span>
+            <select id="discipline">
+              <option value="">Undecided</option>
+              {disciplines.map((d) => <option value={d.name}>{d.name}</option>)}
+            </select>
+          </label>
+          <button type="button" class="copy" id="copy" hidden>Copy address</button>
+        </div>
+
+        <p class="door-note">Choose a discipline before selecting Apply and it is carried
+        in the subject line. Every application is read and held on the register. We reply
+        when an undertaking calls for the discipline, which may be some months after you
+        write, and sometimes not at all. Silence is not a judgement on the application.</p>
+
+        <p class="door-note">We hold what you send for two years and then delete it, and
+        sooner if you ask. See the <a href={withBase('/legal/privacy')}>privacy
+        policy</a>.</p>
+
+        <p class="visually-hidden" id="said" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+    const apply = document.getElementById('apply');
+    const pick = document.getElementById('discipline') as HTMLSelectElement | null;
+    const copy = document.getElementById('copy') as HTMLButtonElement | null;
+    const user = apply?.dataset.u;
+    const domain = apply?.dataset.d;
+
+    if (apply && user && domain) {
+      const address = `${user}@${domain}`;
+
+      const set = () => {
+        const chosen = pick?.value;
+        const subject = chosen ? `Application — ${chosen}` : 'Application';
+        apply.setAttribute('href', `mailto:${address}?subject=${encodeURIComponent(subject)}`);
+      };
+
+      set();
+      pick?.addEventListener('change', set);
+
+      if (copy) {
+        const said = document.getElementById('said');
+        const label = copy.textContent;
+        let restore: number | undefined;
+
+        copy.hidden = false;
+        copy.addEventListener('click', async () => {
+          window.clearTimeout(restore);
+          try {
+            await navigator.clipboard.writeText(address);
+            copy.textContent = 'Copied';
+            copy.dataset.done = '';
+            delete copy.dataset.plain;
+            if (said) said.textContent = 'Address copied to the clipboard.';
+            restore = window.setTimeout(() => {
+              copy.textContent = label;
+              delete copy.dataset.done;
+              if (said) said.textContent = '';
+            }, 2400);
+          } catch {
+            copy.textContent = address;
+            delete copy.dataset.done;
+            copy.dataset.plain = '';
+            if (said) said.textContent = `The address is ${address}.`;
+          }
+        });
+      }
+    }
+  </script>
+</BaseLayout>

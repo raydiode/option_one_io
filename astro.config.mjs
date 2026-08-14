@@ -13,6 +13,7 @@ const PRIORITY = {
   '/services/communicate': 0.8,
   '/about': 0.7,
   '/contact': 0.7,
+  '/careers': 0.4,
   '/insights': 0.5,
   '/insights/minimal-precise-operations': 0.6,
 };

@@ -1,5 +1,5 @@
 ---
-import { brand, nav, legalNav } from '../brand.config';
+import { brand, nav, footNav, legalNav } from '../brand.config';
 import { withBase } from '../lib/base';
 
 const year = new Date().getFullYear();
@@ -14,6 +14,7 @@ const year = new Date().getFullYear();
 
       <nav class="foot-links" aria-label="Footer">
         {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        {footNav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
         <span class="sep" aria-hidden="true">·</span>
         {legalNav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
       </nav>
