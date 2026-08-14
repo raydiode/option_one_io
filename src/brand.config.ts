@@ -6,7 +6,7 @@ export const brand = {
   email: 'enquiries@optionone.io',
   newsletterAction: '',
   disciplines: 'Design · Build · Integrate · Communicate',
-  analytics: '',
+  analytics: 'c91c9c5f6c8244f5bf0af12910b2c778',
 } as const;
 
 export const cta = { label: 'Message Us', href: '/contact' } as const;
